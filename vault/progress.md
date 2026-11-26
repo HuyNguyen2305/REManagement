@@ -13,8 +13,9 @@ A review covers all changes since the previous review:
 
 ## Now
 
-- [ ] Project setup (CLAUDE.md, vault notes, .gitignore, ESLint + Prettier, CI): in progress
-- Next: step 1
+- [x] Project setup (CLAUDE.md, vault notes, .gitignore, ESLint + Prettier, CI)
+- Step 1 done, PR open. Next: step 2
+- Steps since last review: 1 of 3
 
 ## Implementation plan
 
@@ -30,7 +31,7 @@ Tick a step when its PR is merged. Each step is one PR.
 
 4. [ ] Projects: create, home list, `requireMember(projectId)` helper (Admins pass), Activity helper
 5. [ ] Invites and users: invite by email, accept invite, Admin deactivates or reactivates users
-6. [ ] App shell: layout, project nav, Vietnamese-safe fonts, accent-insensitive search helper (`unaccent`)
+6. [ ] App shell: layout, project nav, Vietnamese-safe fonts (shadcn set Geist, which has no Vietnamese subset; swap it), accent-insensitive search helper (`unaccent`)
 
 **→ Review 2 (steps 4–6)**
 

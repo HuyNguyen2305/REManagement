@@ -1,10 +1,24 @@
-import js from "@eslint/js";
-import globals from "globals";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 import prettier from "eslint-config-prettier";
 
-export default [
-  { ignores: ["node_modules/", ".agents/", ".claude/", "graphify-out/"] },
-  js.configs.recommended,
-  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
+const config = [
+  {
+    ignores: [
+      "node_modules/",
+      ".agents/",
+      ".claude/",
+      "graphify-out/",
+      ".next/",
+      "next-env.d.ts",
+      "playwright-report/",
+      "test-results/",
+      "coverage/",
+    ],
+  },
+  ...nextVitals,
+  ...nextTs,
   prettier,
 ];
+
+export default config;
