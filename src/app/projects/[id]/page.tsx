@@ -69,8 +69,16 @@ export default async function ProjectPage({
         <ul className="mt-3 divide-y rounded-xl border">
           {members.map((m) => (
             <li key={m.id} className="flex min-w-0 flex-col px-4 py-3">
-              <span className="truncate font-medium">{m.name}</span>
-              <span className="truncate text-sm text-muted-foreground">
+              <span
+                title={m.name}
+                className="truncate leading-relaxed font-medium"
+              >
+                {m.name}
+              </span>
+              <span
+                title={m.email}
+                className="truncate text-sm leading-relaxed text-muted-foreground"
+              >
                 {m.email}
               </span>
             </li>

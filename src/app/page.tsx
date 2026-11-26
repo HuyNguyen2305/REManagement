@@ -22,7 +22,10 @@ export default async function Home() {
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div className="min-w-0">
           <h1 className="text-2xl font-semibold sm:text-3xl">Projects</h1>
-          <p className="mt-1 truncate text-sm text-muted-foreground">
+          <p
+            title={user.email}
+            className="mt-1 truncate text-sm leading-relaxed text-muted-foreground"
+          >
             Signed in as {user.email}
           </p>
         </div>
@@ -63,7 +66,7 @@ export default async function Home() {
                   <CardHeader>
                     <CardTitle className="break-words">{p.name}</CardTitle>
                     {p.description && (
-                      <CardDescription className="line-clamp-3 break-words">
+                      <CardDescription className="line-clamp-3 break-words leading-relaxed">
                         {p.description}
                       </CardDescription>
                     )}
