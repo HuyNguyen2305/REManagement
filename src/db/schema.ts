@@ -61,7 +61,7 @@ export const invites = pgTable("invites", {
     .notNull()
     .references(() => projects.id, { onDelete: "cascade" }),
   email: text("email").notNull(),
-  token: text("token").notNull().unique(),
+  tokenHash: text("token_hash").notNull().unique(), // SHA-256 of the invite link token; the raw token is never stored
   invitedById: uuid("invited_by_id")
     .notNull()
     .references(() => users.id),
