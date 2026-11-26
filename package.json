@@ -1,0 +1,22 @@
+{
+  "name": "remanagement",
+  "version": "1.0.0",
+  "description": "A compact, team-oriented project management web app. Each project is a small hub with to-dos, a message board, a schedule and an activity feed.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1"
+  },
+  "type": "module"
+}
