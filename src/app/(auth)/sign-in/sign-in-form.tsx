@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { sendMagicLink, type SignInState } from "./actions";
+import { sendMagicLink, type SignInState } from "@/server/auth/sign-in";
 
 export function SignInForm() {
   const [state, action, pending] = useActionState<SignInState, FormData>(

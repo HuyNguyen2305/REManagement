@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/auth";
-import { signOut } from "./actions";
+import { signOut } from "@/server/auth/sign-out";
 
 export default async function Home() {
   const user = await getCurrentUser();
