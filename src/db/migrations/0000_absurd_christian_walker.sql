@@ -10,6 +10,7 @@ CREATE TABLE "activity" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+ALTER TABLE "activity" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
 CREATE TABLE "invites" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"project_id" uuid NOT NULL,
@@ -22,6 +23,7 @@ CREATE TABLE "invites" (
 	CONSTRAINT "invites_token_hash_unique" UNIQUE("token_hash")
 );
 --> statement-breakpoint
+ALTER TABLE "invites" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
 CREATE TABLE "memberships" (
 	"project_id" uuid NOT NULL,
 	"user_id" uuid NOT NULL,
@@ -29,6 +31,7 @@ CREATE TABLE "memberships" (
 	CONSTRAINT "memberships_project_id_user_id_pk" PRIMARY KEY("project_id","user_id")
 );
 --> statement-breakpoint
+ALTER TABLE "memberships" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
 CREATE TABLE "projects" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
@@ -38,6 +41,7 @@ CREATE TABLE "projects" (
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+ALTER TABLE "projects" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
 CREATE TABLE "users" (
 	"id" uuid PRIMARY KEY NOT NULL,
 	"email" text NOT NULL,
@@ -49,6 +53,7 @@ CREATE TABLE "users" (
 	CONSTRAINT "users_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
+ALTER TABLE "users" ENABLE ROW LEVEL SECURITY;--> statement-breakpoint
 ALTER TABLE "activity" ADD CONSTRAINT "activity_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "activity" ADD CONSTRAINT "activity_actor_id_users_id_fk" FOREIGN KEY ("actor_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "invites" ADD CONSTRAINT "invites_project_id_projects_id_fk" FOREIGN KEY ("project_id") REFERENCES "public"."projects"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
