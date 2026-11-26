@@ -24,4 +24,5 @@ Next.js (App Router) + React + TypeScript · Tailwind + shadcn/ui · Supabase Po
 5. After each task, update `vault/progress.md`. Record new decisions, scope or targets in `vault/memory.md`. Notes go in the vault, not elsewhere.
 6. Every server action checks project membership (or Admin) first, and every create, complete, comment or upload writes an Activity row.
 7. Work on a branch and open a PR. CI (lint, format, typecheck, tests, build) must pass before merge; `main` is protected.
-8. Ask before adding features outside phase 1. Log ideas in `vault/memory.md` under "Later".
+8. **Code review after every 3 steps, big or small. Crucial, no exceptions.** Follow the plan in `vault/progress.md`, one step per PR. After every third step, stop and run the review described there before starting the next step.
+9. Ask before adding features outside phase 1. Log ideas in `vault/memory.md` under "Later".
