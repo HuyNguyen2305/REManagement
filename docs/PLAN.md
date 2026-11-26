@@ -13,16 +13,16 @@ Left for version 2: real-time chat, file uploads, recurring check-in questions, 
 
 ## Stack
 
-| Part | Choice | Why |
-|---|---|---|
-| Framework | Next.js (App Router) + TypeScript | One codebase for pages and server logic; easy to deploy |
-| Styling | Tailwind CSS | Fast to build a clean, compact UI |
-| Database | PostgreSQL (free tier on Neon or Supabase) | Reliable, relational data fits projects, members and to-dos |
-| ORM | Prisma | Typed queries and simple migrations |
-| Auth | Auth.js with email magic links (and optionally Google or GitHub sign-in) | No passwords to store |
-| Validation | Zod | Same input checks on client and server |
-| Tests | Vitest for logic, Playwright for a few key flows | Catch regressions early |
-| Hosting | Vercel | Free tier, deploys from GitHub on each push |
+| Part       | Choice                                                                   | Why                                                         |
+| ---------- | ------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| Framework  | Next.js (App Router) + TypeScript                                        | One codebase for pages and server logic; easy to deploy     |
+| Styling    | Tailwind CSS                                                             | Fast to build a clean, compact UI                           |
+| Database   | PostgreSQL (free tier on Neon or Supabase)                               | Reliable, relational data fits projects, members and to-dos |
+| ORM        | Prisma                                                                   | Typed queries and simple migrations                         |
+| Auth       | Auth.js with email magic links (and optionally Google or GitHub sign-in) | No passwords to store                                       |
+| Validation | Zod                                                                      | Same input checks on client and server                      |
+| Tests      | Vitest for logic, Playwright for a few key flows                         | Catch regressions early                                     |
+| Hosting    | Vercel                                                                   | Free tier, deploys from GitHub on each push                 |
 
 ## Data model
 
@@ -45,6 +45,7 @@ Activity      id, projectId, actorId, verb (created | completed | commented | ..
 ```
 
 Rules:
+
 - Only members of a project can see or change anything in it. Every server action checks membership first.
 - Owners can rename or archive the project and manage members. Members can do everything else.
 - Every create, complete or comment writes one `Activity` row, which powers the feed.
