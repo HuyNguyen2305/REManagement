@@ -1,5 +1,5 @@
 {
-  "id": "9c598e10-e588-424b-bb8b-c2d7893e145e",
+  "id": "a473d0ab-6bb7-4c4b-8d3e-3ba90f43fdeb",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -139,8 +139,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "token": {
-          "name": "token",
+        "token_hash": {
+          "name": "token_hash",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -202,11 +202,11 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "invites_token_unique": {
-          "name": "invites_token_unique",
+        "invites_token_hash_unique": {
+          "name": "invites_token_hash_unique",
           "nullsNotDistinct": false,
           "columns": [
-            "token"
+            "token_hash"
           ]
         }
       },

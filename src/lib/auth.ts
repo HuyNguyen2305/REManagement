@@ -14,19 +14,20 @@ export const getCurrentUser = cache(async () => {
   } = await supabase.auth.getUser();
   if (!authUser?.email) redirect("/sign-in");
 
-  const current =
-    (await db.query.users.findFirst({ where: eq(users.id, authUser.id) })) ??
-    (
-      await db
-        .insert(users)
-        .values({
-          id: authUser.id,
-          email: authUser.email,
-          name: authUser.email.split("@")[0],
-        })
-        .onConflictDoNothing()
-        .returning()
-    )[0];
+  const findUser = () =>
+    db.query.users.findFirst({ where: eq(users.id, authUser.id) });
+  let current = await findUser();
+  if (!current) {
+    await db
+      .insert(users)
+      .values({
+        id: authUser.id,
+        email: authUser.email,
+        name: authUser.email.split("@")[0],
+      })
+      .onConflictDoNothing(); // a parallel first request may have inserted it already
+    current = await findUser();
+  }
   if (!current || current.deactivatedAt) {
     await supabase.auth.signOut();
     redirect("/sign-in?error=deactivated");

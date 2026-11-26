@@ -27,7 +27,8 @@ export async function sendMagicLink(
     },
   });
   // Same answer whether or not the account exists, so the form can't be used to find accounts.
-  if (error && error.status !== 422 && error.status !== 400) {
+  if (error && error.code !== "otp_disabled") {
+    console.error("signInWithOtp failed", error.code, error.message);
     return { error: "Couldn't send the link. Try again in a minute." };
   }
   return { sent: true };
