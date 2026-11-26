@@ -25,7 +25,8 @@ export const getCurrentUser = cache(async () => {
         email: authUser.email,
         name: authUser.email.split("@")[0],
       })
-      .onConflictDoNothing(); // a parallel first request may have inserted it already
+      // Only an id clash (a parallel first request) is expected; an email clash should fail loudly.
+      .onConflictDoNothing({ target: users.id });
     current = await findUser();
   }
   if (!current || current.deactivatedAt) {

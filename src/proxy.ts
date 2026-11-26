@@ -28,7 +28,10 @@ export async function proxy(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   if (!user && !isPublicPath(request.nextUrl.pathname)) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+    const redirect = NextResponse.redirect(new URL("/sign-in", request.url));
+    // Keep cookie changes from getUser() (e.g. clearing a dead session).
+    response.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+    return redirect;
   }
   return response;
 }

@@ -1,6 +1,5 @@
 "use server";
 
-import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 
 export type SignInState = { sent?: boolean; error?: string };
@@ -16,14 +15,13 @@ export async function sendMagicLink(
     return { error: "Enter a valid email address." };
   }
 
-  const origin = (await headers()).get("origin");
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithOtp({
     email,
     // No open sign-up: only people who already have an account (or an invite, step 5) get a link.
     options: {
       shouldCreateUser: false,
-      emailRedirectTo: `${origin}/auth/callback`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
     },
   });
   // Same answer whether or not the account exists, so the form can't be used to find accounts.
