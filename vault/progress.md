@@ -102,6 +102,8 @@ Fixed:
 - Auth server actions moved to `src/server/auth/` (file layout rule).
 - Invite tokens are stored as a SHA-256 hash (`token_hash`). The first migration was regenerated, since it had never been run.
 
+- Follow-up re-check (after merge): RLS was off on every table, so Supabase's public API (anon key) could read and change all data. RLS is now on with no policies on all 5 tables. The app connects as the owner role, so it is not affected. The first migration was regenerated again (never run).
+
 Skipped:
 
 - `getCurrentUser` can't clear cookies from a page. The callback and proxy cover it.

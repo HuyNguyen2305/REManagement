@@ -10,6 +10,7 @@ import {
 
 export const userRole = pgEnum("user_role", ["admin", "member"]);
 
+// RLS on with no policies on every table: blocks Supabase's public API (anon key). The app connects as the owner role, which bypasses RLS.
 // id matches the Supabase Auth user id (auth.users.id); the row is created on first sign-in.
 export const users = pgTable("users", {
   id: uuid("id").primaryKey(),
@@ -21,7 +22,7 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-});
+}).enableRLS();
 
 export const projects = pgTable("projects", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -34,7 +35,7 @@ export const projects = pgTable("projects", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-});
+}).enableRLS();
 
 export const memberships = pgTable(
   "memberships",
@@ -53,7 +54,7 @@ export const memberships = pgTable(
     primaryKey({ columns: [t.projectId, t.userId] }),
     index().on(t.userId),
   ],
-);
+).enableRLS();
 
 export const invites = pgTable("invites", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -70,7 +71,7 @@ export const invites = pgTable("invites", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
-});
+}).enableRLS();
 
 // One row per create, complete, comment or upload; powers the Activity feed.
 export const activity = pgTable(
@@ -92,4 +93,4 @@ export const activity = pgTable(
       .defaultNow(),
   },
   (t) => [index().on(t.projectId, t.createdAt)],
-);
+).enableRLS();
