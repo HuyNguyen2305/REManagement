@@ -14,8 +14,9 @@ A review covers all changes since the previous review:
 ## Now
 
 - [x] Project setup (CLAUDE.md, vault notes, .gitignore, ESLint + Prettier, CI)
-- Step 1 done, PR open. Next: step 2
-- Steps since last review: 1 of 3
+- Steps 1 and 2 done (ticked when their PRs merge). Next: step 3, then Review 1
+- Steps since last review: 2 of 3
+- Step 2 note: schema and first migration exist, but no database is connected yet (no Supabase keys). Run `npm run db:migrate` once `DATABASE_URL` is in `.env.local`.
 
 ## Implementation plan
 
