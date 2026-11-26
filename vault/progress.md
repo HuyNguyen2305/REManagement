@@ -14,9 +14,13 @@ A review covers all changes since the previous review:
 ## Now
 
 - [x] Project setup (CLAUDE.md, vault notes, .gitignore, ESLint + Prettier, CI)
-- Steps 1 and 2 done (ticked when their PRs merge). Next: step 3, then Review 1
-- Steps since last review: 2 of 3
-- Step 2 note: schema and first migration exist, but no database is connected yet (no Supabase keys). Run `npm run db:migrate` once `DATABASE_URL` is in `.env.local`.
+- Step 3 and Review 1 done (PR pending). Next: step 4
+- Steps since last review: 0 of 3
+- Not tested against real Supabase yet (no keys). When keys are in `.env.local`:
+  1. Run `npm run db:migrate`.
+  2. In Supabase > Authentication > Email Templates > Magic Link, set the link to `{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=email` (works across devices).
+  3. Add the site URL to Authentication > URL Configuration.
+  4. Try a real sign-in.
 
 ## Implementation plan
 
@@ -24,8 +28,8 @@ Tick a step when its PR is merged. Each step is one PR.
 
 ### Phase 1: Base
 
-1. [ ] Scaffold: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui; add `typecheck`, `test`, `build` scripts; Vitest + Playwright set up with one smoke test each
-2. [ ] Database: Supabase project, Drizzle config, `.env.example`, schema for users (role, deactivated), projects, memberships, invites, activity; first migration
+1. [x] Scaffold: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui; add `typecheck`, `test`, `build` scripts; Vitest + Playwright set up with one smoke test each
+2. [x] Database: Supabase project, Drizzle config, `.env.example`, schema for users (role, deactivated), projects, memberships, invites, activity; first migration
 3. [ ] Sign-in: Supabase magic links, session middleware, user row on first sign-in, deactivated users blocked
 
 **→ Review 1 (steps 1–3)**
@@ -82,4 +86,25 @@ Tick a step when its PR is merged. Each step is one PR.
 
 ## Review log
 
-_None yet._
+### Review 1 (steps 1–3), 2026-11-26
+
+Ran `/ponytail-review`, `/code-review` (medium) and `/ponytail-audit` (dead code).
+
+Fixed:
+
+- First sign-in race: two parallel first requests could mark a new user "deactivated". Now inserts on id conflict only, then re-reads.
+- Sign-in hid every 400/422 Supabase error. Now only "otp_disabled" (no account) is hidden; others are logged.
+- Callback now signs deactivated users out where cookies can be cleared.
+- Magic links failed on a different device (PKCE). Callback now also accepts `token_hash` links.
+- Magic-link redirect used the client's Origin header. Now uses `NEXT_PUBLIC_SITE_URL`.
+- Proxy redirect dropped cookie changes. Now copies them.
+- Dev hot reload opened a new DB pool each time. Now reuses one.
+- Auth server actions moved to `src/server/auth/` (file layout rule).
+- Invite tokens are stored as a SHA-256 hash (`token_hash`). The first migration was regenerated, since it had never been run.
+
+Skipped:
+
+- `getCurrentUser` can't clear cookies from a page. The callback and proxy cover it.
+- `lucide-react` is unused for now. shadcn components will use it.
+- `docs/PLAN.md` was stale (Prisma, Auth.js, no Files). Deleted with the owner's OK.
+- Not tested against real Supabase (no keys yet).
