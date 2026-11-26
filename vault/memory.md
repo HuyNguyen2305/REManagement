@@ -1,6 +1,6 @@
 # Memory
 
-Project facts and decisions. Supersedes `docs/PLAN.md` where they differ (stack, roles, Files in phase 1).
+Project facts and decisions. The single source of truth (the old `docs/PLAN.md` was deleted).
 
 ## Goal
 

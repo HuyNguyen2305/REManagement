@@ -106,5 +106,5 @@ Skipped:
 
 - `getCurrentUser` can't clear cookies from a page. The callback and proxy cover it.
 - `lucide-react` is unused for now. shadcn components will use it.
-- `docs/PLAN.md` is stale (Prisma, Auth.js, no Files). Waiting for the owner's OK to delete it.
+- `docs/PLAN.md` was stale (Prisma, Auth.js, no Files). Deleted with the owner's OK.
 - Not tested against real Supabase (no keys yet).
