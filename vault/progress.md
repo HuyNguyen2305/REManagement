@@ -14,9 +14,9 @@ A review covers all changes since the previous review:
 ## Now
 
 - [x] Project setup (CLAUDE.md, vault notes, .gitignore, ESLint + Prettier, CI)
-- Steps 1 and 2 done (ticked when their PRs merge). Next: step 3, then Review 1
-- Steps since last review: 2 of 3
-- Step 2 note: schema and first migration exist, but no database is connected yet (no Supabase keys). Run `npm run db:migrate` once `DATABASE_URL` is in `.env.local`.
+- Step 3 done (PR pending). Next: Review 1, then step 4
+- Steps since last review: 3 of 3 (review due)
+- Not tested against real Supabase yet (no keys). When keys are in `.env.local`: run `npm run db:migrate`, then try a real magic-link sign-in.
 
 ## Implementation plan
 
@@ -24,8 +24,8 @@ Tick a step when its PR is merged. Each step is one PR.
 
 ### Phase 1: Base
 
-1. [ ] Scaffold: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui; add `typecheck`, `test`, `build` scripts; Vitest + Playwright set up with one smoke test each
-2. [ ] Database: Supabase project, Drizzle config, `.env.example`, schema for users (role, deactivated), projects, memberships, invites, activity; first migration
+1. [x] Scaffold: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui; add `typecheck`, `test`, `build` scripts; Vitest + Playwright set up with one smoke test each
+2. [x] Database: Supabase project, Drizzle config, `.env.example`, schema for users (role, deactivated), projects, memberships, invites, activity; first migration
 3. [ ] Sign-in: Supabase magic links, session middleware, user row on first sign-in, deactivated users blocked
 
 **→ Review 1 (steps 1–3)**
