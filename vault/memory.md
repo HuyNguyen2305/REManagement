@@ -37,6 +37,13 @@ Next.js (App Router) + React + TypeScript, Tailwind + shadcn/ui, Supabase Postgr
 - Files go to Cloudflare R2 with presigned multipart uploads straight from the browser, never through a route.
 - Supabase Storage was rejected: 1 GB free storage and a 50 MB per-file cap are too small for lighting-design files.
 
+## Look (set in step 4 with the installed design skills)
+
+- Style: minimal, functional (ui-ux-pro-max: Minimalism & Swiss Style for productivity tools).
+- Primary colour: teal-700 (`oklch(0.511 0.096 186.391)`) in light mode, teal-400 in dark mode; neutrals from shadcn.
+- Font: the owner will supply it; it must cover Vietnamese. Geist is a placeholder.
+- Linked cards lift 2px on mouse hover and press on touch; 44px touch targets on phones; inputs 16px on phones (no iOS zoom).
+
 ## Later
 
 - Group chat (next after phase 1)

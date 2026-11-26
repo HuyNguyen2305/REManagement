@@ -14,8 +14,9 @@ A review covers all changes since the previous review:
 ## Now
 
 - [x] Project setup (CLAUDE.md, vault notes, .gitignore, ESLint + Prettier, CI)
-- Step 3 and Review 1 done (PR pending). Next: step 4
-- Steps since last review: 0 of 3
+- Step 4 done (PR pending). Next: step 5
+- Steps since last review: 1 of 3
+- Step 4 not tried on real data yet (no keys). When keys are in: create a project, check it shows on home and opens, check a non-member gets "Not found", check one Activity row was written.
 - Not tested against real Supabase yet (no keys). When keys are in `.env.local`:
   1. Run `npm run db:migrate`.
   2. In Supabase > Authentication > Email Templates > Magic Link, set the link to `{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=email` (works across devices).
@@ -30,13 +31,13 @@ Tick a step when its PR is merged. Each step is one PR.
 
 1. [x] Scaffold: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui; add `typecheck`, `test`, `build` scripts; Vitest + Playwright set up with one smoke test each
 2. [x] Database: Supabase project, Drizzle config, `.env.example`, schema for users (role, deactivated), projects, memberships, invites, activity; first migration
-3. [ ] Sign-in: Supabase magic links, session middleware, user row on first sign-in, deactivated users blocked
+3. [x] Sign-in: Supabase magic links, session middleware, user row on first sign-in, deactivated users blocked
 
 **→ Review 1 (steps 1–3)**
 
-4. [ ] Projects: create, home list, `requireMember(projectId)` helper (Admins pass), Activity helper
+4. [x] Projects: create, home list, `requireMember(projectId)` helper (Admins pass), Activity helper
 5. [ ] Invites and users: invite by email, accept invite, Admin deactivates or reactivates users
-6. [ ] App shell: layout, project nav, Vietnamese-safe fonts (shadcn set Geist, which has no Vietnamese subset; swap it), accent-insensitive search helper (`unaccent`)
+6. [ ] App shell: layout, project nav, the owner's font (they will supply it; Geist is a placeholder and has no Vietnamese subset), accent-insensitive search helper (`unaccent`)
 
 **→ Review 2 (steps 4–6)**
 
