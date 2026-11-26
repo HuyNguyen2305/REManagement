@@ -1,0 +1,13 @@
+import { defineConfig, devices } from "@playwright/test";
+
+// CI runs the production build (built in an earlier step); locally the dev server is used.
+export default defineConfig({
+  testDir: "tests/e2e",
+  use: { baseURL: "http://localhost:3000" },
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  webServer: {
+    command: process.env.CI ? "npm run start" : "npm run dev",
+    url: "http://localhost:3000",
+    reuseExistingServer: !process.env.CI,
+  },
+});
